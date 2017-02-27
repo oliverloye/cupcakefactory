@@ -56,6 +56,8 @@ public class CustomerMapper {
                 String password = rs.updateString(3, "password");
                 String cname = rs.updateString(4, "cname");
                 String email = rs.updateString(5, "email");
+
+                //Dette er en updatering fra iMac!
                 
                 
                 
