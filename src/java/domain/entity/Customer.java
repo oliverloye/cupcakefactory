@@ -16,13 +16,23 @@ public class Customer {
     private String password;
     private String cname;
     private String email;
+    private double balance;
 
-    public Customer(int userid, String username, String password, String cname, String email) {
+    public Customer(int userid, String username, String password, String cname, String email, double balance) {
         this.userid = userid;
         this.username = username;
         this.password = password;
         this.cname = cname;
         this.email = email;
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public int getUserid() {
@@ -63,7 +73,9 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "userid=" + userid + ", username=" + username + ", password=" + password + ", cname=" + cname + ", email=" + email + '}';
+        return "Customer{" + "userid=" + userid + ", username=" + username + ", password=" + password + ", cname=" + cname + ", email=" + email + ", balance=" + balance + '}';
     }
+
+   
     
 }

@@ -1,4 +1,4 @@
-package date;
+package data;
 
 import domain.entity.Customer;
 import java.sql.Connection;
@@ -24,7 +24,7 @@ public class CustomerMapper {
         Customer customer = null;
         try {
             Connection conn = new DB().getConnection();
-            String sql = "SELECT userid, username, password, cname, email FROM customer WHERE userid = ?";
+            String sql = "SELECT * FROM customer WHERE userid = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
@@ -34,12 +34,36 @@ public class CustomerMapper {
                 String password = rs.getString("password");
                 String cname = rs.getString("cname");
                 String email = rs.getString("email");
-                customer = new Customer(userid, username, password, cname, email);
+                double balance = rs.getDouble("balance");
+                customer = new Customer(userid, username, password, cname, email, balance);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return customer;
+    }
+    
+    public Customer setCustomer(Customer c) {
+        try {
+            //Customer customer = null;
+            Connection conn = new DB().getConnection();
+            String sql = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(2, c.setUsername(sql));
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                String username = rs.updateString(2, "username");
+                String password = rs.updateString(3, "password");
+                String cname = rs.updateString(4, "cname");
+                String email = rs.updateString(5, "email");
+                
+                
+                
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return c;
     }
     
     public static void main(String[] args) {
