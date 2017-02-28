@@ -49,21 +49,21 @@ public class CustomerMapper {
         Connection conn = new DB().getConnection();
         try {
             String sql = "INSERT INTO customer(userid, username, password, cname, email, balance) VALUES (null, ?,?,?,?,?)";
-            PreparedStatement customerStmt = conn.prepareStatement(sql);
+            PreparedStatement pstmt = conn.prepareStatement(sql);
 
             
-            customerStmt.setString(1, username);
-            customerStmt.setString(2, password);
-            customerStmt.setString(3, cname);
-            customerStmt.setString(4, email);
-            customerStmt.setDouble(5, 100.00);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            pstmt.setString(3, cname);
+            pstmt.setString(4, email);
+            pstmt.setDouble(5, 100.00);
             
             if(checkUserExists(email)) {
                 
                 return;
             } else {
                 System.out.println("User findes ikke");
-            customerStmt.execute();
+            pstmt.execute();
             }
             
 

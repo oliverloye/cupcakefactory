@@ -40,6 +40,10 @@ public class RegControler extends HttpServlet {
             //Indsætte oplysniger i databasen
             cm.setCustomer(username, password, cname, email, 100);
             
+            if(CheckUserExsist) {
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
+            
             
             
             //Sender data
