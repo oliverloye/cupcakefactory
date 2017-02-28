@@ -40,6 +40,8 @@ public class RegControler extends HttpServlet {
             //Indsætte oplysniger i databasen
             cm.setCustomer(username, password, cname, email, 100);
             
+            
+            
             //Sender data
             request.getRequestDispatcher("view.jsp").forward(request, response);
         } catch (SQLException ex) {

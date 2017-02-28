@@ -51,14 +51,15 @@ public class CustomerMapper {
             String sql = "INSERT INTO customer(userid, username, password, cname, email, balance) VALUES (null, ?,?,?,?,?)";
             PreparedStatement customerStmt = conn.prepareStatement(sql);
 
-            conn.setAutoCommit(false);
-
+            
             customerStmt.setString(1, username);
             customerStmt.setString(2, password);
             customerStmt.setString(3, cname);
             customerStmt.setString(4, email);
             customerStmt.setDouble(5, 100.00);
-
+            
+            customerStmt.execute();
+            
 
         } catch (SQLException ex) {
             ex.printStackTrace();
