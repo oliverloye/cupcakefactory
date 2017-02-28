@@ -58,7 +58,13 @@ public class CustomerMapper {
             customerStmt.setString(4, email);
             customerStmt.setDouble(5, 100.00);
             
+            if(CheckUserExists(email)) {
+                System.out.println("User findes");
+                return;
+            } else {
+                System.out.println("User findes ikke");
             customerStmt.execute();
+            }
             
 
         } catch (SQLException ex) {
@@ -69,6 +75,28 @@ public class CustomerMapper {
                 ex1.printStackTrace();
             }
         }
+    }
+    
+    
+    public static boolean CheckUserExists(String email) {
+        boolean userExists = false;
+        try {
+            Connection conn = new DB().getConnection();
+            String sql = "SELECT email FROM customer";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet r1 = pstmt.executeQuery();
+            String emailCounter;
+            if(r1.next()) {
+                emailCounter = r1.getString("email");
+                if(emailCounter.equals(email)) {//this part does not happen even if it should
+                    System.out.println("It already exists");
+                    userExists = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return userExists;
     }
     
     public static void main(String[] args) {
