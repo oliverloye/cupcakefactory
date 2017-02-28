@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Feb 28, 2017, 2:14:45 PM
+    Document   : view
+    Created on : Feb 28, 2017, 2:17:49 PM
     Author     : Oliver
 --%>
 
@@ -12,10 +12,6 @@
         <title>Cupcake Factory</title>
     </head>
     <body>
-        <h1>WELCOME</h1>
-        
-        <form method="get" action="registration.jsp">
-            <button type="submit">Registraion</button>
-        </form>
+        <h1>Hello World!</h1>
     </body>
 </html>

@@ -43,27 +43,31 @@ public class CustomerMapper {
         return customer;
     }
     
-    public Customer setCustomer(Customer c) {
+    public void setCustomer(String username, String password, String cname, String email, double balance) throws SQLException {
+
+        //Customer customer = new Customer();
+        Connection conn = new DB().getConnection();
         try {
-            //Customer customer = null;
-            Connection conn = new DB().getConnection();
-            String sql = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(2, c.setUsername(sql));
-            ResultSet rs = pstmt.executeQuery();
-            if(rs.next()) {
-                String username = rs.updateString(2, "username");
-                String password = rs.updateString(3, "password");
-                String cname = rs.updateString(4, "cname");
-                String email = rs.updateString(5, "email");
-                
-                
-                
-            }
+            String sql = "INSERT INTO customer(userid, username, password, cname, email, balance) VALUES (null, ?,?,?,?,?)";
+            PreparedStatement customerStmt = conn.prepareStatement(sql);
+
+            conn.setAutoCommit(false);
+
+            customerStmt.setString(1, username);
+            customerStmt.setString(2, password);
+            customerStmt.setString(3, cname);
+            customerStmt.setString(4, email);
+            customerStmt.setDouble(5, 100.00);
+
+
         } catch (SQLException ex) {
             ex.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                ex1.printStackTrace();
+            }
         }
-        return c;
     }
     
     public static void main(String[] args) {
