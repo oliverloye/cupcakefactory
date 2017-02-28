@@ -58,8 +58,8 @@ public class CustomerMapper {
             customerStmt.setString(4, email);
             customerStmt.setDouble(5, 100.00);
             
-            if(CheckUserExists(email)) {
-                System.out.println("User findes");
+            if(checkUserExists(email)) {
+                
                 return;
             } else {
                 System.out.println("User findes ikke");
@@ -78,7 +78,7 @@ public class CustomerMapper {
     }
     
     
-    public static boolean CheckUserExists(String email) {
+    public static boolean checkUserExists(String email) {
         boolean userExists = false;
         try {
             Connection conn = new DB().getConnection();
@@ -89,7 +89,7 @@ public class CustomerMapper {
             if(r1.next()) {
                 emailCounter = r1.getString("email");
                 if(emailCounter.equals(email)) {//this part does not happen even if it should
-                    System.out.println("It already exists");
+                    System.out.println("User already exists");
                     userExists = true;
                 }
             }
