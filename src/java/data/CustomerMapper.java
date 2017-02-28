@@ -48,6 +48,7 @@ public class CustomerMapper {
         //Customer customer = new Customer();
         Connection conn = new DB().getConnection();
         try {
+<<<<<<< HEAD
             String sql = "INSERT INTO customer(userid, username, password, cname, email, balance) VALUES (null, ?,?,?,?,?)";
             PreparedStatement customerStmt = conn.prepareStatement(sql);
 
@@ -60,6 +61,25 @@ public class CustomerMapper {
             customerStmt.setDouble(5, 100.00);
 
 
+=======
+            //Customer customer = null;
+            Connection conn = new DB().getConnection();
+            String sql = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(2, c.setUsername(sql));
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                String username = rs.updateString(2, "username");
+                String password = rs.updateString(3, "password");
+                String cname = rs.updateString(4, "cname");
+                String email = rs.updateString(5, "email");
+
+                //Dette er en updatering fra iMac!
+                
+                
+                
+            }
+>>>>>>> b55e509fbfa1bfa2f3764eff9e846e08c3bd5d9d
         } catch (SQLException ex) {
             ex.printStackTrace();
             try {
