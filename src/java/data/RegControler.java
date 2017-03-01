@@ -37,17 +37,17 @@ public class RegControler extends HttpServlet {
             String cname = request.getParameter("cname");
             String email = request.getParameter("email");
             
-            //Indsætte oplysniger i databasen
+            //Forbedreder SQL query INSERT med oplysniger til databasen
             cm.setCustomer(username, password, cname, email, 100);
             
-            if(CheckUserExsist) {
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
-            
-            
-            
+            //if(cm.checkUserExists(email)) {
+            if(cm.getCustomerExist() == false) {
+                request.getRequestDispatcher("view.jsp").forward(request, response);
+                
+            } else {
             //Sender data
-            request.getRequestDispatcher("view.jsp").forward(request, response);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

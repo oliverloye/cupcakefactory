@@ -20,6 +20,12 @@ import java.util.logging.Logger;
  */
 public class CustomerMapper {
     
+    public static boolean customerExsist = false;
+    
+    public boolean getCustomerExist() {
+        return customerExsist;
+    }
+    
     public Customer getCustomer(int id) {
         Customer customer = null;
         try {
@@ -62,39 +68,44 @@ public class CustomerMapper {
                 
                 return;
             } else {
-                System.out.println("User findes ikke");
+                System.out.println("User dosen't exsist");
             pstmt.execute();
             }
             
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            try {
-                conn.rollback();
-            } catch (SQLException ex1) {
-                ex1.printStackTrace();
-            }
+//            try {
+//                conn.rollback();
+//            } catch (SQLException ex1) {
+//                ex1.printStackTrace();
+//            }
+            
         }
     }
     
     
     public static boolean checkUserExists(String email) {
+        
         boolean userExists = false;
         try {
             Connection conn = new DB().getConnection();
-            String sql = "SELECT email FROM customer";
+            String sql = "SELECT * FROM customer WHERE email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
             ResultSet r1 = pstmt.executeQuery();
             String emailCounter;
             if(r1.next()) {
                 emailCounter = r1.getString("email");
-                if(emailCounter.equals(email)) {//this part does not happen even if it should
+                if(emailCounter.equals(email)) {
                     System.out.println("User already exists");
                     userExists = true;
+                    customerExsist = true;
                 }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+            
         }
         return userExists;
     }
