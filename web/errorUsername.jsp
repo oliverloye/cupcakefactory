@@ -1,6 +1,6 @@
 <%-- 
-    Document   : view
-    Created on : Feb 28, 2017, 2:17:49 PM
+    Document   : errorUsername
+    Created on : Mar 1, 2017, 12:07:08 PM
     Author     : Oliver
 --%>
 
@@ -12,6 +12,9 @@
         <title>Cupcake Factory</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3>Error, username already exsist! Please pick another name.</h3>
+        <form method="get" action="registration.jsp">
+            <button type="submit">Back to registration</button>
+        </form>
     </body>
 </html>

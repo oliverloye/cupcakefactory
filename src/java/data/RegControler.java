@@ -31,22 +31,25 @@ public class RegControler extends HttpServlet {
             
             response.setContentType("text/html; charset=UTF-8");
             
-            //Get data from JSP-form
+            //Get data from registration.jsp
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String cname = request.getParameter("cname");
             String email = request.getParameter("email");
             
             //Forbedreder SQL query INSERT med oplysniger til databasen
-            cm.setCustomer(username, password, cname, email, 100);
             
-            //if(cm.checkUserExists(email)) {
-            if(cm.getCustomerExist() == false) {
-                request.getRequestDispatcher("view.jsp").forward(request, response);
-                
+            if(cm.checkUsernameExsist(username) == false) {
+                if(cm.checkEmailExists(email) == false) {
+                    cm.setCustomer(username, password, cname, email, 100);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+
+                } else {
+                //Sender data
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+                }
             } else {
-            //Sender data
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher("errorUsername.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

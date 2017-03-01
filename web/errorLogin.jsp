@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Feb 28, 2017, 2:14:45 PM
+    Document   : errorLogin
+    Created on : Mar 1, 2017, 10:27:15 AM
     Author     : Oliver
 --%>
 
@@ -12,13 +12,9 @@
         <title>Cupcake Factory</title>
     </head>
     <body>
-        <h1>WELCOME</h1>
-        
-        <form method="get" action="registration.jsp">
-            <button type="submit">Registraion</button>
-        </form>
+        <h3>Your username or password are incorrect.. Please try again!</h3>
         <form method="get" action="login.jsp">
-            <button type="submit">Login</button>
+            <button type="submit">Back to login</button>
         </form>
     </body>
 </html>

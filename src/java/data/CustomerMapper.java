@@ -20,11 +20,6 @@ import java.util.logging.Logger;
  */
 public class CustomerMapper {
     
-    public static boolean customerExsist = false;
-    
-    public boolean getCustomerExist() {
-        return customerExsist;
-    }
     
     public Customer getCustomer(int id) {
         Customer customer = null;
@@ -64,7 +59,7 @@ public class CustomerMapper {
             pstmt.setString(4, email);
             pstmt.setDouble(5, 100.00);
             
-            if(checkUserExists(email)) {
+            if(checkEmailExists(email)) {
                 
                 return;
             } else {
@@ -84,8 +79,58 @@ public class CustomerMapper {
         }
     }
     
+    public boolean checkCustomerLogin(String username, String password) {
+        boolean userExsist = false;
+        try {
+            Connection conn = new DB().getConnection();
+            String sql = "SELECT * FROM customer WHERE username = ? AND password = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+            String usernameCounter;
+            String passwordCounter;
+            if(rs.next()) {
+                usernameCounter = rs.getString(username);
+                passwordCounter = rs.getString(password);
+                if(!(usernameCounter.equals(username) && passwordCounter.equals(password))) {
+                    System.out.println("Login: user dosen't exsist");
+                } else {
+                    System.out.println("Login: korrekt login, user findes");
+                    userExsist = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return userExsist;
+    }
     
-    public static boolean checkUserExists(String email) {
+    public boolean checkUsernameExsist(String username) {
+        boolean userExists = false;
+        try {
+            Connection conn = new DB().getConnection();
+            String sql = "SELECT * FROM customer WHERE username = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            ResultSet r1 = pstmt.executeQuery();
+            String usernameCounter;
+            if(r1.next()) {
+                usernameCounter = r1.getString("username");
+                if(usernameCounter.equals(username)) {
+                    System.out.println("Username already exists");
+                    userExists = true;
+                   
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }
+        return userExists;
+    }
+    
+    public boolean checkEmailExists(String email) {
         
         boolean userExists = false;
         try {
@@ -100,7 +145,7 @@ public class CustomerMapper {
                 if(emailCounter.equals(email)) {
                     System.out.println("User already exists");
                     userExists = true;
-                    customerExsist = true;
+                   
                 }
             }
         } catch (SQLException ex) {
