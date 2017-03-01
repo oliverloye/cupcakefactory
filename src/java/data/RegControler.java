@@ -28,7 +28,6 @@ public class RegControler extends HttpServlet {
         CustomerMapper cm = new CustomerMapper();
         
         try {
-            
             response.setContentType("text/html; charset=UTF-8");
             
             //Get data from registration.jsp
@@ -36,8 +35,6 @@ public class RegControler extends HttpServlet {
             String password = request.getParameter("password");
             String cname = request.getParameter("cname");
             String email = request.getParameter("email");
-            
-            //Forbedreder SQL query INSERT med oplysniger til databasen
             
             if(cm.checkUsernameExsist(username) == false) {
                 if(cm.checkEmailExists(email) == false) {
