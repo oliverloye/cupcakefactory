@@ -5,11 +5,8 @@
  */
 package data;
 
-import domain.entity.Customer;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +39,7 @@ public class RegControler extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request, response);
 
                 } else {
-                //Sender data
+                
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             } else {

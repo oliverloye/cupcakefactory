@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +7,6 @@
 package data;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,13 +29,12 @@ public class LoginControler extends HttpServlet {
         //Get data from login.jsp
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
-        
-        
+        System.out.println("før if statement");
         if(cm.checkCustomerLogin(username, password) == false) {
-            request.getRequestDispatcher("errorLogin.jsp").forward(request, response);
-        } else {
+            System.out.println("inside if statement");
             request.getRequestDispatcher("welcome.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("errorLogin.jsp").forward(request, response);
         }
     }
     
