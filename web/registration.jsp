@@ -8,7 +8,7 @@
 <!doctype html>
 <html>
     <head>
-        <link href= "index.css" rel="stylesheet" type="text/css">
+        <link href= "registration.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Anton|Lobster" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Anton" rel="stylesheet"> 
         <link href= "../Websites/Website2/css/font-awesome.min.css" rel="stylesheet" type="text/css">	
@@ -18,7 +18,8 @@
     <body>
         <div id="container">
         <img src="2.jpg">	
-            <form name="registration" action="RegControler" method="POST">
+            <form name="registration" action="RegController" method="POST">
+                
                 <div id="form-input">
                     <input type="text" name="cname" placeholder="Enter full name">
                 </div>

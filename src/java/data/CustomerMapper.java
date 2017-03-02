@@ -113,10 +113,10 @@ public class CustomerMapper {
             String sql = "SELECT * FROM customer WHERE username = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
-            ResultSet r1 = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             String usernameCounter;
-            if(r1.next()) {
-                usernameCounter = r1.getString("username");
+            if(rs.next()) {
+                usernameCounter = rs.getString("username");
                 if(usernameCounter.equals(username)) {
                     System.out.println("Username already exists");
                     userExists = true;
@@ -138,10 +138,10 @@ public class CustomerMapper {
             String sql = "SELECT * FROM customer WHERE email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
-            ResultSet r1 = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             String emailCounter;
-            if(r1.next()) {
-                emailCounter = r1.getString("email");
+            if(rs.next()) {
+                emailCounter = rs.getString("email");
                 if(emailCounter.equals(email)) {
                     System.out.println("User already exists");
                     userExists = true;
@@ -153,6 +153,36 @@ public class CustomerMapper {
             
         }
         return userExists;
+    }
+    
+    
+    public Customer validateCustomer(String username, String password)
+    {
+        try
+        {
+            Connection conn = new DB().getConnection();
+            String sql = "SELECT * FROM customer WHERE username = ? and password = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next())
+            {
+                int userid = rs.getInt("userid");
+                String cname = rs.getString("cname");
+                String email = rs.getString("email");
+                double balance = rs.getDouble("balance");
+                return new Customer(userid, username, password, cname, email, balance);
+            }
+
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        return null;
     }
     
     public static void main(String[] args) {

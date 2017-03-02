@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Oliver
  */
-@WebServlet(name = "RegControler", urlPatterns = {"/RegControler"})
-public class RegControler extends HttpServlet {
+@WebServlet(name = "RegController", urlPatterns = {"/RegController"})
+public class RegController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         

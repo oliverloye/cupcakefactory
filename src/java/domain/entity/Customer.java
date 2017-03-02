@@ -17,6 +17,10 @@ public class Customer {
     private String cname;
     private String email;
     private double balance;
+    
+    public Customer() {
+        
+    }
 
     public Customer(int userid, String username, String password, String cname, String email, double balance) {
         this.userid = userid;

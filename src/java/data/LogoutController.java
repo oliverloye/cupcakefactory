@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +5,6 @@
  */
 package data;
 
-import domain.entity.Customer;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,33 +17,25 @@ import javax.servlet.http.HttpSession;
  *
  * @author Oliver
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "LogoutController", urlPatterns = {"/LogoutController"})
+public class LogoutController extends HttpServlet {
     
     CustomerMapper cm = new CustomerMapper();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession();
+            HttpSession session = request.getSession();
+            
+            
+            
+            if(session.getAttribute("customer") != null) {
+                session.setAttribute("customer", null);
+                response.sendRedirect("index.jsp");
+            }
         
-        Customer customer;
-        String username, password;
         
-        response.setContentType("text/html; charset=UTF-8");
         
-        session = request.getSession();
-        //Get data from login.jsp
-        username = request.getParameter("username");
-        password = request.getParameter("password");
-        customer = cm.validateCustomer(username, password);
-        
-        if(customer == null) {
-            response.sendRedirect("errorLogin.jsp");
-        } else {
-            session.setAttribute("customer", customer);
-            response.sendRedirect("shop.jsp");
-        }
     }
     
     @Override

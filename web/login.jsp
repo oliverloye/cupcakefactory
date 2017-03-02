@@ -5,11 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
-        <link href= "css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href= "login.css" rel="stylesheet" type="text/css">
+        <link href= "css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Anton|Lobster" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Anton" rel="stylesheet"> 
         <meta charset="utf-8">
@@ -18,7 +18,7 @@
     <body>
         <div id="container">
         <img src="">
-        <form name="login" action="LoginContoler" method="POST">
+        <form name="login" action="LoginController" method="POST">
             <div id="form-input">
                 <input type="text" name="username" placeholder="Enter username">
             </div>
