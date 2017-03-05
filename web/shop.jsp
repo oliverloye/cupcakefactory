@@ -4,6 +4,7 @@
     Author     : Oliver
 --%>
 
+<%@page import="domain.entity.Customer"%>
 <%@page import="domain.entity.Bottom"%>
 <%@page import="data.CakeMapper"%>
 <%@page import="java.util.List"%>
@@ -19,31 +20,23 @@
         <link href="https://fonts.googleapis.com/css?family=Taviraj|Yellowtail" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css?family=Bevan|Pattaya" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <script src="info.js"></script>
         <title>Cupcake Factory</title>
     </head>
-    <header>
-            <div id ="nav">
-                <u1>
-                    <div id="nav2">
-                        <head><h1>Cupcake Factory</h1></head>
-                    </div>
-                    <li>
-                        <form method="get" action="LogoutController">
-                            <button type="sumit">Logout</button>
-                        </form>
-
-
-                    </li>	
-                </u1>
-
-
-                <div id="image"></div>
-                <img src="">
-                <div id="mask"></div>
-                <div id="content"></div>
-            </div>
-    </header>
     <body>
+    <header>
+        <div id ="nav">
+            <u1>
+                <div id="nav2">
+                    <h1>Cupcake Factory</h1>
+                </div>
+                <li>
+                    <form method="get" action="LogoutController">
+                        <button type="sumit">Logout</button>
+                    </form></li>	
+            </u1>
+        </div>
+    </header>
         <center>
             <h2>Shop</h2>
         </center>
