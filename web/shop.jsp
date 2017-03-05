@@ -37,6 +37,8 @@
             </u1>
         </div>
     </header>
+        <br><br>
+        
         <center>
             <h2>Shop</h2>
         </center>
